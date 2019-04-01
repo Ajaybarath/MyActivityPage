@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ReviewFragment">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="3dp"
+            android:layout_marginBottom="10dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/people_card_bg">
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="15dp"
+                android:src="@drawable/profile_pic"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_toRightOf="@+id/profile_image"
+                android:text="Write your review"
+                android:textColor="#707070"
+                android:textSize="10dp" />
+
+            <EditText
+                android:id="@+id/reviewEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="55dp" />
+
+
+            <LinearLayout
+                android:id="@+id/ratingHearts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reviewEditText"
+                android:layout_marginLeft="15dp"
+                android:paddingLeft="5dp">
+
+
+                <ImageView
+                    android:id="@+id/fav1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/ic_heart_active" />
+
+                <ImageView
+                    android:id="@+id/fav2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/ic_heart" />
+
+                <ImageView
+                    android:id="@+id/fav3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/ic_heart" />
+
+                <ImageView
+                    android:id="@+id/fav4"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/ic_heart" />
+
+                <ImageView
+                    android:id="@+id/fav5"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/ic_heart" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:text="Review"
+                    android:textColor="#707070"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/ratingNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:text="4.0"
+                    android:textColor="#707070"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reviewEditText"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:text="Share"
+                android:textColor="#707070"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Overall rating"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:textColor="#707070"/>
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="3.0"
+                android:textColor="#707070"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dratingHearts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/reviewEditText"
+            android:paddingLeft="5dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="22dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/dfav1"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_heart_active" />
+
+            <ImageView
+                android:id="@+id/dfav2"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_heart_active" />
+
+            <ImageView
+                android:id="@+id/dfav3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_heart_active" />
+
+            <ImageView
+                android:id="@+id/dfav4"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_heart_active" />
+
+            <ImageView
+                android:id="@+id/dfav5"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_heart" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>
