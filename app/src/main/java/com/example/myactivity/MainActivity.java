@@ -19,12 +19,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity {
 
-    ViewPagerAdapter adapter;
-    TabLayout tabLayout;
-    ViewPager viewPager;
-
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,75 +32,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+    }
 
-        adapter = new ViewPagerAdapter(getSupportFragmentManager());
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new PingFragment(), "Ping");
         adapter.addFragment(new PeopleFragment(), "People");
         adapter.addFragment(new ReviewFragment(), "Review");
         adapter.addFragment(new ForumFragment(), "Forum");
         viewPager.setAdapter(adapter);
-
-        for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            TabLayout.Tab tab = tabLayout.getTabAt(i);
-            assert tab != null;
-            tab.setCustomView(null);
-            tab.setCustomView(adapter.getTabView(i));
-        }
-
-
-
-        highLightCurrentTab(0);
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                highLightCurrentTab(i);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
-
     }
 
-    private void highLightCurrentTab(int position) {
-        for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            TabLayout.Tab tab = tabLayout.getTabAt(i);
-            assert tab != null;
-            tab.setCustomView(null);
-            tab.setCustomView(adapter.getTabView(i));
-        }
-
-        TabLayout.Tab tab = tabLayout.getTabAt(position);
-        assert tab != null;
-        tab.setCustomView(null);
-        tab.setCustomView(adapter.getSelectedView(position));
-
-    }
-
-
-    class ViewPagerAdapter extends FragmentStatePagerAdapter {
-
+    class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        ViewPagerAdapter(FragmentManager fm) {
-            super(fm);
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
         }
 
         @Override
-        public Fragment getItem(int i) {
-            return mFragmentList.get(i);
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
         }
 
         @Override
@@ -108,38 +65,14 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
-        void addFragment(Fragment fragment, String title) {
+        public void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
-
 
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
-
-
-        public View getTabView(int position) {
-            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_tab_layout, null);
-            TextView tabTextView = view.findViewById(R.id.tabTextView);
-            tabTextView.setText(mFragmentTitleList.get(position));
-            return view;
-        }
-
-        public View getSelectedView(int position){
-            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_tab_layout, null);
-            TextView tabTextView = view.findViewById(R.id.tabTextView);
-            LinearLayout linearLayout  = view.findViewById(R.id.tabLinearLayout);
-
-            tabTextView.setText(mFragmentTitleList.get(position));
-
-
-
-            return view;
-        }
-
     }
-
 }
-

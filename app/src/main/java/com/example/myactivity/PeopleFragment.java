@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.Toast;
 
@@ -36,8 +39,6 @@ public class PeopleFragment extends Fragment implements PeopleRecycelAdapter.Sea
     RecyclerView recyclerView;
 
     private SearchView.OnQueryTextListener queryTextListener;
-
-
 
 
     @Override
@@ -70,16 +71,26 @@ public class PeopleFragment extends Fragment implements PeopleRecycelAdapter.Sea
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(mLayoutManager);
 
-        adapter = new PeopleRecycelAdapter(list,this,this);
+        adapter = new PeopleRecycelAdapter(list,this,this, getContext());
         recyclerView.setAdapter(adapter);
+
 
         return view;
 
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+
+    @Override
     public void onSearchSelected(View view) {
         System.out.println("Search selected");
+
+        String s = "asdf";
+        s.toUpperCase();
 
         searchView = view.findViewById(R.id.search_people);
 
@@ -89,6 +100,8 @@ public class PeopleFragment extends Fragment implements PeopleRecycelAdapter.Sea
     public void onSearchQueried(String s) {
         System.out.println("Search queried ");
         adapter.getFilter().filter(s);
+        adapter.notifyDataSetChanged();
+        recyclerView.scrollToPosition(0);
     }
 
     @Override

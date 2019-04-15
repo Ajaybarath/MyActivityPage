@@ -1,4 +1,5 @@
 package com.example.myactivity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 
 import com.example.myactivity.R;
@@ -26,12 +28,12 @@ public class ReviewFragment extends Fragment {
     ReviewRecycleAdapter adapter;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
         reviewList = new ArrayList<>();
+
 
         final View view = inflater.inflate(R.layout.fragment_review, container, false);
         final FragmentActivity c = getActivity();
@@ -40,7 +42,7 @@ public class ReviewFragment extends Fragment {
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(mLayoutManager);
 
-        adapter = new ReviewRecycleAdapter(reviewList);
+        adapter = new ReviewRecycleAdapter(reviewList, getContext());
         recyclerView.setAdapter(adapter);
 
 
@@ -55,6 +57,12 @@ public class ReviewFragment extends Fragment {
 
 
         return view;
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
 
     }
 

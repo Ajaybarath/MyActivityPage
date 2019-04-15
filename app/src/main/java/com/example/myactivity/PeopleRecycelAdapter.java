@@ -4,10 +4,15 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -19,6 +24,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
 import static android.support.v4.content.ContextCompat.getSystemService;
 
 public class PeopleRecycelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
@@ -26,15 +32,20 @@ public class PeopleRecycelAdapter extends RecyclerView.Adapter<RecyclerView.View
     List<People> list;
     List<People> listFiltered;
 
+    Context context;
 
     SearchListener listener;
     FollowListener followListener;
 
-    PeopleRecycelAdapter(List<People> list, SearchListener listener, FollowListener followListener){
+    InputMethodManager imm;
+
+    PeopleRecycelAdapter(List<People> list, SearchListener listener, FollowListener followListener, Context context){
         this.list = list;
         this.listFiltered = list;
         this.listener = listener;
         this.followListener = followListener;
+        this.context = context;
+        imm = (InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE);
     }
 
     @Override
@@ -48,6 +59,7 @@ public class PeopleRecycelAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                 if (name.isEmpty()){
                     listFiltered = list;
+                    notifyDataSetChanged();
                 }
                 else {
                     List<People> filteringList = new ArrayList<>();
@@ -84,19 +96,24 @@ public class PeopleRecycelAdapter extends RecyclerView.Adapter<RecyclerView.View
             super(itemView);
             searchView = (SearchView) itemView.findViewById(R.id.search_people);
 
+            itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            });
+
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String s) {
-                    System.out.println(2 + "***********************************...");
-                    listener.onSearchQueried(s);
-                    return false;
+                    getFilter().filter(s);
+                    return true;
                 }
 
                 @Override
                 public boolean onQueryTextChange(String s) {
-                    System.out.println(s + "***********************************111");
-                    listener.onSearchQueried(s);
-                    return false;
+                    getFilter().filter(s);
+                    return true;
                 }
             });
 
@@ -121,7 +138,19 @@ public class PeopleRecycelAdapter extends RecyclerView.Adapter<RecyclerView.View
                 }
             });
 
+            view.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    return true;
+                }
+
+            });
+
+
         }
+
 
     }
 
