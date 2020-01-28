@@ -46,14 +46,13 @@ public class ReviewFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
-        reviewList.add(new RatingReview(5, "ajay", "not a good asjkdbfas das vs fvh sjv", "ajkd"));
-        reviewList.add(new RatingReview(5, "barath", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\"", "ajkd"));
-        reviewList.add(new RatingReview(5, "vijay", "not a good asjkdbfas das vs fvh sjv", "ajkd"));
-        reviewList.add(new RatingReview(5, "vishal", "not a good asjkdbfas das vs fvh sjv", "ajkd"));
-        reviewList.add(new RatingReview(5, "aswath", "not a good asjkdbfas das vs fvh sjv", "ajkd"));
-        reviewList.add(new RatingReview(5, "sharan", "not a good asjkdbfas das vs fvh sjv", "ajkd"));
-        reviewList.add(new RatingReview(5, "deepak", "not a good asjkdbfas das vs fvh sjv", "ajkd"));
-        reviewList.add(new RatingReview(5, "ajay", "not a good asjkdbfas das vs fvh sjv", "ajkd"));
+        reviewList.add(new RatingReview(5, "Ajay", "It was a very good experience.", "ajkd"));
+        reviewList.add(new RatingReview(5, "Barath", "Lorem ipsum dolor sit amet,ut aliquip ex ea commodo consequat.\"", "ajkd"));
+        reviewList.add(new RatingReview(5, "Vijay", "I has made me learn a lot.", "ajkd"));
+        reviewList.add(new RatingReview(5, "Vishal", "Learnt to rectify errors and debug.", "ajkd"));
+        reviewList.add(new RatingReview(5, "Aswath", "Implementing Search Bar was not a easy task.", "ajkd"));
+        reviewList.add(new RatingReview(5, "Sharan", "First time working with fragments", "ajkd"));
+        reviewList.add(new RatingReview(5, "Deepak", "Love to do a lot more like this", "ajkd"));
 
 
         return view;

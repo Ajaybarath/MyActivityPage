@@ -48,19 +48,16 @@ public class PeopleFragment extends Fragment implements PeopleRecycelAdapter.Sea
         list = new ArrayList<>();
 
 
-        list.add(new People("ajay", "s"));
-        list.add(new People("ajkjsdfngjay", "s"));
-        list.add(new People("ajsjkay", "s"));
-        list.add(new People("iuhiu", "s"));
-        list.add(new People("ajsjkay", "s"));
-        list.add(new People("88uioj", "s"));
-        list.add(new People("nbvjvi", "s"));
-        list.add(new People("iuyiu", "s"));
-        list.add(new People("hvbnnjk", "s"));
-        list.add(new People("mjhl", "s"));
-        list.add(new People("yyugjk", "s"));
-        list.add(new People("nbvjhgiy", "s"));
-        list.add(new People("rewrv", "s"));
+        list.add(new People("Ajay", "s"));
+        list.add(new People("Barath", "s"));
+        list.add(new People("Surya", "s"));
+        list.add(new People("Aswath", "s"));
+        list.add(new People("Deepak", "s"));
+        list.add(new People("Ranjith", "s"));
+        list.add(new People("Dhinesh", "s"));
+        list.add(new People("Santhosh", "s"));
+        list.add(new People("Sharan", "s"));
+        list.add(new People("Vishal", "s"));
 
         final View view = inflater.inflate(R.layout.fragment_people, container, false);
         final View view1 = inflater.inflate(R.layout.people_row_top, container, false);
